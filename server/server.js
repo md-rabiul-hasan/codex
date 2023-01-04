@@ -15,7 +15,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.get('/', async (req, res) => {n
+app.get('/', async (req, res) => {
   res.status(200).send({
     message: 'Hello from CodeX!'
   })
@@ -24,10 +24,9 @@ app.get('/', async (req, res) => {n
 app.post('/', async (req, res) => {
   try {
     const prompt = req.body.prompt;
-    const model  = req.body.model;
 
     const response = await openai.createCompletion({
-      model: `${model}`,
+      model: "text-davinci-003",
       prompt: `${prompt}`,
       temperature: 0, // Higher values means the model will take more risks.
       max_tokens: 3000, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
@@ -45,22 +44,5 @@ app.post('/', async (req, res) => {
     res.status(500).send(error || 'Something went wrong');
   }
 })
-
-
-// app.get('/models', async(req, res) => {
-//   try {
-//     const response = await openai.listModels();
-//     res.status(200).send({
-//       models: response.data.data
-//     });
-//   } catch (err) {
-//     console.log(err)
-//     res.status(500).send({ message: err });
-//   }
-
- 
-// })
-
-
 
 app.listen(5000, () => console.log('AI server started on http://localhost:5000'))
