@@ -47,19 +47,19 @@ app.post('/', async (req, res) => {
 })
 
 
-app.get('/models', async(req, res) => {
-  try {
-    const response = await openai.listModels();
-    res.status(200).send({
-      models: response.data.data
-    });
-  } catch (err) {
-    console.log(err)
-    res.status(500).send({ message: err });
-  }
+// app.get('/models', async(req, res) => {
+//   try {
+//     const response = await openai.listModels();
+//     res.status(200).send({
+//       models: response.data.data
+//     });
+//   } catch (err) {
+//     console.log(err)
+//     res.status(500).send({ message: err });
+//   }
 
  
-})
+// })
 
 
 
